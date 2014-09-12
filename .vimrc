@@ -1,7 +1,7 @@
 " vim: foldmethod=marker
 
 "{{{1 Initial config
-set shell=/bin/sh "Vim must operate in a POSIX compliant shell, if you're not in one, hooo boy
+set shell=/bin/bash "Vim must operate in a POSIX compliant shell, if you're not in one, hooo boy
 set nocompatible  "Might as well actually use Vim instead of Vi
 
 "{{{1 Vundle Settings
@@ -19,6 +19,9 @@ Bundle 'ScrollColors'
 
 "{{{3 xoria256 colorscheme - Super awesome
 Bundle 'vim-scripts/xoria256.vim'
+
+"{{{3 mustang-vim - Also Super awesome
+Bundle 'croaker/mustang-vim'
 
 "{{{2 Indent Guides - Provides alternating bars for indentation
 " This plugin provides 3 commands, all prefixed with IndentGuides
@@ -44,6 +47,19 @@ Bundle 'bling/vim-airline'
 
 "{{{2 Fugitive - For sexy git integration
 Bundle 'fugitive.vim'
+
+"{{{2 git-gutter - Shows changes in active repository
+Bundle 'airblade/vim-gitgutter'
+	let g:gitgutter_diff_args = '-w' "ignore whitespace
+	let g:gitgutter_sign_added = '++'
+	let g:gitgutter_sign_modified = '~~'
+	let g:gitgutter_sign_removed = 'xx'
+	let g:gitgutter_sign_removed_first_line = '->'
+	let g:gitgutter_sign_modified_removed = '~x'
+	highlight link GitGutterAdd          DiffAdd
+	highlight link GitGutterChange       DiffChange
+	highlight link GitGutterDelete       DiffDelete
+	highlight link GitGutterChangeDelete DiffChange
 
 "{{{2 Sensible - This seems sensible, (a smattering of sensible defaults)
 Bundle 'tpope/vim-sensible'
@@ -89,8 +105,8 @@ Bundle 'Lokaltog/vim-easymotion'
 	"easymotion search
 	map  / <Plug>(easymotion-sn)
 	omap / <Plug>(easymotion-tn)
- 	map  n <Plug>(easymotion-next)
- 	map  N <Plug>(easymotion-prev)
+	map  n <Plug>(easymotion-next)
+	map  N <Plug>(easymotion-prev)
 	"bothdirection search
 	map  s <Plug>(easymotion-s)
 
@@ -139,7 +155,8 @@ command! W w !sudo tee % >/dev/null
 "{{{1 Some gui/nongui independent settings
 "colorscheme xoria256
 if has("gui_running")
-	colorscheme xoria256
+	"colorscheme xoria256
+	colorscheme mustang
 	set go+=c
 	set go-=e
 	set go-=m
@@ -155,5 +172,11 @@ else
 	augroup END
 endif
 
+"These colors are must set.
+highlight DiffAdd ctermfg=234 ctermbg=151 guifg=bg guibg=#afdfaf
+highlight DiffChange ctermfg=234 ctermbg=223 guifg=bg guibg=LightYellow
+highlight DiffDelete ctermfg=234 ctermbg=174 guifg=bg guibg=#df8787 gui=NONE
+highlight DiffText ctermfg=234 ctermbg=246 guifg=bg guibg=#949494 gui=NONE
+highlight SignColumn term=standout ctermfg=248 ctermbg=8 guifg=#a8a8a8 guibg=#444444
+
 filetype plugin indent on
-" vim: foldmethod=marker
