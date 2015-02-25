@@ -1,8 +1,8 @@
-.vimrc
+Personal Dotfiles
 =====
 
-My personal .vimrc
+Contains personal configuration settings so I can sync them on my system
 
-Just so I have a place to sync the damn thing.
+The idea here being to move all the raw config files, that I care to keep consistant between my personal computers, into this folder, and symlink them.
 
-It's WTFPL or whatever. I don't care. 
+everything in here is WTFPL or whatever. I don't care. 
